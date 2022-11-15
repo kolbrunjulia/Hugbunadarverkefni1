@@ -3,7 +3,6 @@ import is.hi.hbv501g.hbv501g.Persistance.Entities.ExerciseCombo;
 import is.hi.hbv501g.hbv501g.Persistance.Entities.User;
 import is.hi.hbv501g.hbv501g.Persistance.Entities.Workout;
 import is.hi.hbv501g.hbv501g.Services.ExerciseComboService;
-import is.hi.hbv501g.hbv501g.Services.ExerciseService;
 import is.hi.hbv501g.hbv501g.Services.UserService;
 import is.hi.hbv501g.hbv501g.Services.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -47,7 +45,7 @@ public class WorkoutController {
     public String homePage(Model model, @Param("keyword") String keyword, HttpSession session){
         if(userService.userLoggedIn(session)) {
             // Call a method in a service class
-            List<Workout> allWorkouts = workoutService.listAll(keyword);
+            List<Workout> allWorkouts = workoutService.listAll(keyword, userService.findByID(1));
             User loggedInUser = (User) session.getAttribute("LoggedInUser");
             // Add some data to the model
             model.addAttribute("workouts", allWorkouts);
@@ -64,6 +62,20 @@ public class WorkoutController {
         }
         return "redirect:/";
     }
+    @RequestMapping(value = "/addWorkout",method = RequestMethod.POST)
+    public String addWorkout(Workout workout, BindingResult result,Model model, HttpSession session){
+        if(userService.userLoggedIn(session)) {
+            if (result.hasErrors()) {
+                return "addWorkout";
+            }
+            User userToAddWorkoutTo = (User) session.getAttribute("LoggedInUser");
+            userToAddWorkoutTo.getMyWorkouts().add(workout);
+            workoutService.save(workout);
+            userService.save(userToAddWorkoutTo);
+            return "redirect:/myWorkouts";
+        }
+        return "redirect:/";
+    }
 
     @RequestMapping(value = "/workoutTil")
     public String workoutTil(HttpSession session){
@@ -73,17 +85,7 @@ public class WorkoutController {
         return "redirect:/error_page1";
     }
 
-    @RequestMapping(value = "/addWorkout",method = RequestMethod.POST)
-    public String addWorkout(Workout workout, BindingResult result,Model model, HttpSession session){
-        if(userService.userLoggedIn(session)) {
-            if (result.hasErrors()) {
-                return "addWorkout";
-            }
-            workoutService.save(workout);
-            return "redirect:/workouts";
-        }
-        return "redirect:/";
-    }
+
     @RequestMapping(value="/delete/{id}",method = RequestMethod.GET)
     public String deleteWorkout(@PathVariable("id") long id,  Model model, HttpSession session){
         if(userService.userLoggedIn(session)) {

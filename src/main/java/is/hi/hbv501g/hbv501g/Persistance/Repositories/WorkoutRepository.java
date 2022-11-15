@@ -1,4 +1,5 @@
 package is.hi.hbv501g.hbv501g.Persistance.Repositories;
+import is.hi.hbv501g.hbv501g.Persistance.Entities.User;
 import is.hi.hbv501g.hbv501g.Persistance.Entities.Workout;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +28,5 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
     @Query("SELECT w FROM Workout w WHERE CONCAT(w.title, w.duration, w.description) LIKE %?1%")
     public List<Workout> search(String keyword);
 
+    List<Workout> findByUser(User user);
 }

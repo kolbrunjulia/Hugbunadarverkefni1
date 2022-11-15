@@ -58,17 +58,16 @@ public class WorkoutServiceImplementation implements WorkoutService {
     }
 
     @Override
-    public List<Workout> listAll(String keyword) {
-        if (keyword != null) {
-            return workoutRepository.search(keyword);
-        }
-        return workoutRepository.findAll();
+    public List<Workout> listAll(String keyword, User user) {
+            if (keyword != null) {
+                return workoutRepository.search(keyword);
+            }
+            return workoutRepository.findByUser(user);
     }
 
     @Override
     public void addUserToWorkout(User user,Workout workout) {
         List<User> userList = workout.getUser();
         workout.getUser().add(user);
-         int gjemli = userList.size();
     }
 }

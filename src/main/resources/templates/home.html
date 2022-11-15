@@ -9,64 +9,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Sperran</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <!--<link rel="stylesheet" href="css/style.css" /> -->
     <link rel="stylesheet" href="css/grid.css" />
 </head>
 <body>
-    <div class="wrapper">
-        <div class="header">
-            <p th:text="${LoggedInUser.username}"></p>
+    <p th:text="${LoggedInUser.username}"></p>
 
-            <form th:action="@{/workouts}">
-                <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-                &nbsp;
-                <input type="submit" value="Search" />
-                &nbsp;
-                <!--<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />-->
-            </form>
+    <form th:action="@{/workouts}">
+        <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        &nbsp;
+        <input type="submit" value="Search" />
+        &nbsp;
+        <!--<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />-->
+    </form>
+
+    <div class="main">
+
+        <form th:action="@{/myWorkouts}" method="post">
+            <input type="submit" value="My Workouts" />
+        </form>
+
+        <form th:action="@{/settings}" method="post">
+            <input type="submit" value="Settings" />
+        </form>
+
+        <div th:switch="${workouts}">
+            <h2 th:case="null">No workouts yet!</h2>
+
+            <div th:case="*">
+                <h2>Workouts</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Open Workout</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="workout : ${workouts}">
+                        <td th:text="${workout.title}" ><a href="@{/workout/{id}(id=${workout.ID})}"> </a></td>
+                        <td th:text="${workout.duration}"></td>
+                        <td><a th:href="@{/workout/{id}(id=${workout.ID})}">Open Workout</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <div class="main">
-            <div class="val">
-                <form th:action="@{/myWorkouts}" method="post">
-                    <input type="submit" value="My Workouts" />
-                </form>
-                <form th:action="@{/settings}" method="post">
-                    <input type="submit" value="Settings" />
-                </form>
-            </div>
-
-            <div class="filer">
-                <p><a>FILTER</a></p>
-            </div>
-
-            <div th:switch="${workouts}" class="list">
-                <h2 th:case="null">No workouts yet!</h2>
-
-                <div th:case="*">
-                    <h2>Workouts</h2>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Duration</th>
-                            <th>Description</th>
-                            <th>Open Workout</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="workout : ${workouts}">
-                            <td th:text="${workout.title}" ><a href="@{/workout/{id}(id=${workout.ID})}"> </a></td>
-                            <td th:text="${workout.duration}"></td>
-                            <td th:text="${workout.description}"></td>
-                            <td><a th:href="@{/workout/{id}(id=${workout.ID})}">Open Workout</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--<p><a href="/addWorkout">Add a new workout</a></p>-->
-        </div>
+        <!--<p><a href="/addWorkout">Add a new workout</a></p>-->
     </div>
 </body>
 </html>

@@ -19,7 +19,7 @@ public interface WorkoutService {
         Workout findByID(long ID);
         Workout save(Workout workout);
         void delete(Workout workout);
-        List<Workout> listAll(String keyword);
+        List<Workout> listAll(String keyword, User user);
         void addUserToWorkout(User user, Workout workout);
 
         //public List<User> getUser();
