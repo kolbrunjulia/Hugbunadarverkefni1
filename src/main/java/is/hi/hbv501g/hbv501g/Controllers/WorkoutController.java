@@ -45,7 +45,7 @@ public class WorkoutController {
     public String homePage(Model model, @Param("keyword") String keyword, HttpSession session){
         if(userService.userLoggedIn(session)) {
             // Call a method in a service class
-            List<Workout> allWorkouts = workoutService.listAll(keyword, userService.findByID(1));
+            List<Workout> allWorkouts = workoutService.listAll(keyword);
             User loggedInUser = (User) session.getAttribute("LoggedInUser");
             // Add some data to the model
             model.addAttribute("workouts", allWorkouts);
@@ -68,10 +68,12 @@ public class WorkoutController {
             if (result.hasErrors()) {
                 return "addWorkout";
             }
-            User userToAddWorkoutTo = (User) session.getAttribute("LoggedInUser");
-            userToAddWorkoutTo.getMyWorkouts().add(workout);
+            User user = (User) session.getAttribute("LoggedInUser");
+            workout.getUser().add(user);
             workoutService.save(workout);
-            userService.save(userToAddWorkoutTo);
+
+            user.getMyWorkouts().add(workout);
+            userService.save(user);
             return "redirect:/myWorkouts";
         }
         return "redirect:/";

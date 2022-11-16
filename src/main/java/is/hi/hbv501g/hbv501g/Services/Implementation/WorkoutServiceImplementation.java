@@ -43,6 +43,11 @@ public class WorkoutServiceImplementation implements WorkoutService {
     }
 
     @Override
+    public List<Workout> findWorkoutsByMadeByAdminIsTrue() {
+        return workoutRepository.findWorkoutsByMadeByAdminIsTrue();
+    }
+
+    @Override
     public Workout findByID(long ID) {
        return workoutRepository.findByID(ID);
     }
@@ -58,11 +63,11 @@ public class WorkoutServiceImplementation implements WorkoutService {
     }
 
     @Override
-    public List<Workout> listAll(String keyword, User user) {
+    public List<Workout> listAll(String keyword) {
             if (keyword != null) {
                 return workoutRepository.search(keyword);
             }
-            return workoutRepository.findByUser(user);
+            return workoutRepository.findWorkoutsByMadeByAdminIsTrue();
     }
 
     @Override

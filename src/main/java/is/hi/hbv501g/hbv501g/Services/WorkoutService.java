@@ -16,10 +16,12 @@ import java.util.List;
 public interface WorkoutService {
         Workout findByTitle(String title);
         List<Workout> findAll();
+        List<Workout> findWorkoutsByMadeByAdminIsTrue();
+
         Workout findByID(long ID);
         Workout save(Workout workout);
         void delete(Workout workout);
-        List<Workout> listAll(String keyword, User user);
+        List<Workout> listAll(String keyword);
         void addUserToWorkout(User user, Workout workout);
 
         //public List<User> getUser();

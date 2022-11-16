@@ -29,14 +29,21 @@ public class Workout {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<User> user = new ArrayList<>();
 
+    private boolean madeByAdmin;
+
 
     public Workout() {
+    }
+
+    public boolean isMadeByAdmin() {
+        return madeByAdmin;
     }
 
     public Workout(String title, int duration, String description) {
         this.title = title;
         this.duration = duration;
         this.description = description;
+        this.madeByAdmin = false;
     }
 
     public long getID() {
