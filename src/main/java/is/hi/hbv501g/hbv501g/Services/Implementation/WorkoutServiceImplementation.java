@@ -63,11 +63,31 @@ public class WorkoutServiceImplementation implements WorkoutService {
     }
 
     @Override
-    public List<Workout> listAll(String keyword) {
+    public List<Workout> listAll(String keyword, String duration) {
             if (keyword != null) {
                 return workoutRepository.search(keyword);
             }
-            return workoutRepository.findWorkoutsByMadeByAdminIsTrue();
+            if(duration != null) {
+            if (duration.equals("0")) {
+                return workoutRepository.searchWorkoutByDurationIsLessThanEqualAndDurationGreaterThanEqualAndMadeByAdminIsTrue(6000, 0);
+            }
+
+            if (duration.equals("1")) {
+                return workoutRepository.searchWorkoutByDurationIsLessThanEqualAndDurationGreaterThanEqualAndMadeByAdminIsTrue(20, 0);
+            }
+            if (duration.equals("2")) {
+                return workoutRepository.searchWorkoutByDurationIsLessThanEqualAndDurationGreaterThanEqualAndMadeByAdminIsTrue(40, 20);
+            }
+            if (duration.equals("3")) {
+                return workoutRepository.searchWorkoutByDurationIsLessThanEqualAndDurationGreaterThanEqualAndMadeByAdminIsTrue(60, 40);
+            }
+            if (duration.equals("4")) {
+                return workoutRepository.searchWorkoutByDurationIsLessThanEqualAndDurationGreaterThanEqualAndMadeByAdminIsTrue(6000, 60);
+            }
+         }
+
+                return workoutRepository.findWorkoutsByMadeByAdminIsTrue();
+
     }
 
     @Override

@@ -17,11 +17,10 @@ public interface WorkoutService {
         Workout findByTitle(String title);
         List<Workout> findAll();
         List<Workout> findWorkoutsByMadeByAdminIsTrue();
-
         Workout findByID(long ID);
         Workout save(Workout workout);
         void delete(Workout workout);
-        List<Workout> listAll(String keyword);
+        List<Workout> listAll(String keyword, String duration);
         void addUserToWorkout(User user, Workout workout);
 
         //public List<User> getUser();

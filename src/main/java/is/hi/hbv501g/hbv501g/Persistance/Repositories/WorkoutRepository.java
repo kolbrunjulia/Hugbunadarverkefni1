@@ -26,8 +26,10 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
     Workout findByID(long ID);
     List<Workout> findWorkoutsByMadeByAdminIsTrue();
 
-    @Query("SELECT w FROM Workout w WHERE w.madeByAdmin = TRUE AND w IN (SELECT w FROM Workout w WHERE CONCAT(w.title, w.duration, w.description) LIKE %?1%)")
+    @Query("SELECT w FROM Workout w WHERE w.madeByAdmin = TRUE AND w IN (SELECT w FROM Workout w WHERE CONCAT(w.title, w.description) LIKE %?1%)")
     public List<Workout> search(String keyword);
 
+    //@Query("SELECT w FROM Workout w where w.madeByAdmin = TRUE AND w in (select w from Workout w where w.duration > 0 and w.duration < 20)")
+    public List<Workout> searchWorkoutByDurationIsLessThanEqualAndDurationGreaterThanEqualAndMadeByAdminIsTrue(int duration, int duration2);
     List<Workout> findByUser(User user);
 }

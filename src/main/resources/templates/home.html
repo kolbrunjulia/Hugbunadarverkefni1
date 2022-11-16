@@ -20,8 +20,9 @@
         &nbsp;
         <input type="submit" value="Search" />
         &nbsp;
-        <!--<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />-->
+        <input type="button" value="Clear All Filters" id="btnClear" onclick="clearSearch()" />
     </form>
+
 
     <div class="main">
 
@@ -31,6 +32,17 @@
 
         <form th:action="@{/settings}" method="post">
             <input type="submit" value="Settings" />
+        </form>
+
+        <form th:action="@{/workouts}" method="post">
+        <label for="duration">Duration:</label>
+        <select name="duration" id="duration" onchange="this.form.submit()">
+            <option value="0" >All workouts</option>
+            <option value="1" >0-20 min</option>
+            <option value="2">20-40 min</option>
+            <option value="3" >40-60 min</option>
+            <option value="4" >60+ min</option>
+        </select>
         </form>
 
         <div th:switch="${workouts}">
@@ -56,7 +68,7 @@
                 </table>
             </div>
         </div>
-        <p><a href="/addWorkout">Add a new workout</a></p>
+
     </div>
 </body>
 </html>

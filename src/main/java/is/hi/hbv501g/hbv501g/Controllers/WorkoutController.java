@@ -42,13 +42,14 @@ public class WorkoutController {
     }
 
     @RequestMapping("/workouts")
-    public String homePage(Model model, @Param("keyword") String keyword, HttpSession session){
+    public String homePage(Model model, @Param("keyword") String keyword, @Param("duration") String duration, HttpSession session){
         if(userService.userLoggedIn(session)) {
             // Call a method in a service class
-            List<Workout> allWorkouts = workoutService.listAll(keyword);
+            List<Workout> allWorkouts = workoutService.listAll(keyword,duration);
             User loggedInUser = (User) session.getAttribute("LoggedInUser");
             // Add some data to the model
             model.addAttribute("workouts", allWorkouts);
+            model.addAttribute("duration",duration);
             model.addAttribute("keyword", keyword);
             model.addAttribute("LoggedInUser", loggedInUser);
             return "home";
