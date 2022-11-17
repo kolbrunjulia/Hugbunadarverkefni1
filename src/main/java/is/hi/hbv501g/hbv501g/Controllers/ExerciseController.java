@@ -11,17 +11,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.servlet.http.HttpSession;
 
 /******************************************************************************
- *  Nafn    : Hópur 7
- *  T-póstur: sns25@hi.is, kjg18@hi.is, hrj53@hi.is, mmo15@hi.is
+ *  Name    : Group 7
+ *  E-mail: sns25@hi.is, kjg18@hi.is, hrj53@hi.is, mmo15@hi.is
  *
- *  Lýsing  : Controller fyrir Exercise klasann. Klasinn tala við eftirfarandi
- *  service: ExerciseComboService, WorkoutService og ExerciseService.
- *  Controllerinn hefur aðferðir bæta exercises við.
- *
+ *  Description  : Controller for the Exercise class. The class communicates
+ *  to the following services: ExerciseComboService, WorkoutService and
+ *  ExerciseService. The controller contains methods that add an exercise and
+ *  delete exercises. Every single method makes sure that a user is logged in
+ *  before it is performed. If a user is not logged in then the user is
+ *  redirected to the login page.
  *****************************************************************************/
 
 @Controller
@@ -38,10 +39,16 @@ public class ExerciseController {
         this.workoutService = workoutService;
         this.userService = userService;
     }
+
     /**
+     * GET on /deleteExercise/{workout_id}/{id}
      *
-     * @param
-     * @return
+     * @param exerciseCombo the exerciseCombo that is to be deleted
+     * @param id id of the exerciseCombo that is to be deleted
+     * @param workout_id id of the workout we are deletin the exerciseCombo from
+     * @param model model
+     * @param session current session
+     * @return /workout/{workout_id}
      */
     @RequestMapping(value = "deleteExercise/{workout_id}/{id}", method = RequestMethod.GET)
     public String deleteExercise(ExerciseCombo exerciseCombo, @PathVariable("id") long id, @PathVariable("workout_id") long workout_id, Model model, HttpSession session){
@@ -52,10 +59,15 @@ public class ExerciseController {
         }
         return "redirect:/";
     }
+
     /**
+     * GET on /workout/{id}/addExercise
      *
-     * @param
-     * @return
+     * @param exerciseCombo exerciseCombo that is to be added
+     * @param id ID of the workout we want to add the exerciseCombo to
+     * @param model model
+     * @param session current session
+     * @return the template addExerciseCombo
      */
     @RequestMapping(value = "workout/{id}/addExercise", method = RequestMethod.GET)
     public String addExerciseComboForm(ExerciseCombo exerciseCombo,@PathVariable("id") long id,Model model, HttpSession session){
@@ -66,10 +78,18 @@ public class ExerciseController {
         }
         return "redirect:/";
     }
+
     /**
+     * POST on /workout/{id}/addExercise
      *
-     * @param
-     * @return
+     * @param exerciseCombo the exerciseCombo to be added
+     * @param workout_id ID of the workout we want to add the exerciseCombo to
+     * @param exercise_title title of the exerciseCombo
+     * @param reps number of repititions
+     * @param sets number of sets
+     * @param kg kilograms
+     * @param session current session
+     * @return /workout/{id}
      */
     @RequestMapping(value = "/workout/{id}/addExercise", method = RequestMethod.POST)
     public String addExerciseCombo(ExerciseCombo exerciseCombo,@PathVariable("id") long workout_id, String exercise_title, int reps, int sets, double kg, HttpSession session){
@@ -81,7 +101,4 @@ public class ExerciseController {
         }
         return "redirect:/";
     }
-
-
-
 }

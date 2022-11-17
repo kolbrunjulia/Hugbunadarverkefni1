@@ -8,21 +8,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
 
 /******************************************************************************
- *  Nafn    : Hópur 7
- *  T-póstur: sns25@hi.is, kjg18@hi.is, hrj53@hi.is, mmo15@hi.is
+ *  Name    : Group 7
+ *  E-mail: sns25@hi.is, kjg18@hi.is, hrj53@hi.is, mmo15@hi.is
  *
- *  Lýsing  : Controller fyrir User klasann. Klasinn inniheldur aðferðir sem
- *  gerir notandanum kleift að búa til nýjan aðgang og skrá sig inn á sinn
- *  aðgang.
- *
+ *  Description  : Controller for the User class. The class contains methods
+ *  that allow the user to create a new account and to log in to its own account.
  *****************************************************************************/
 
-// Allt sem er ready og er að gera einhverja logík
-// Lýsing á entities,
-// 17:18
 @Controller
 public class UserController {
 
@@ -34,9 +28,10 @@ public class UserController {
     }
 
     /**
+     * GET on /signup
      *
-     * @param
-     * @return
+     * @param user the user that is signing up
+     * @return template signup_page
      */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user) {
@@ -44,9 +39,13 @@ public class UserController {
     }
 
     /**
+     * POST on /signup
      *
-     * @param
-     * @return
+     * @param user the user that is signing up
+     * @param result result
+     * @param model model
+     * @param session current session
+     * @return /workouts if user does not exist
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupPOST(User user, BindingResult result, Model model, HttpSession session){
@@ -63,9 +62,10 @@ public class UserController {
     }
 
     /**
+     * GET on /
      *
-     * @param
-     * @return
+     * @param user the user that is logging in
+     * @return the template login_page
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loginGET(User user){
@@ -73,9 +73,13 @@ public class UserController {
     }
 
     /**
+     * POST on /
      *
-     * @param
-     * @return
+     * @param user the user that is logging in
+     * @param result result
+     * @param model model
+     * @param session current session
+     * @return /workouts if user exists
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session){
@@ -94,9 +98,11 @@ public class UserController {
 
 
     /**
+     * GET on /loggedin
      *
-     * @param
-     * @return
+     * @param session current session
+     * @param model model
+     * @return the template LoggedInUser
      */
     @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
@@ -108,6 +114,14 @@ public class UserController {
         }
         return "redirect:/";
     }
+
+    /**
+     * POST on /logout
+     *
+     * @param session current session
+     * @param model model
+     * @return / wheen session has been invalidated
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logout(HttpSession session, Model model){
         session.invalidate();
@@ -115,6 +129,13 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     * POST on /settings
+     *
+     * @param session current session
+     * @param model model
+     * @return the template settings
+     */
     @RequestMapping(value = "/settings",method = RequestMethod.POST)
     public String userSettings(HttpSession session,Model model) {
         User sessionUser = (User) session.getAttribute("LoggedInUser");
