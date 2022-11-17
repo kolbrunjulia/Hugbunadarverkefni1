@@ -111,6 +111,7 @@ public class WorkoutController {
         }
         return "redirect:/";
     }
+
     @RequestMapping(value="/deleteMyWorkout/{id}",method = RequestMethod.GET)
     public String deleteMyWorkout(@PathVariable("id") long id,  Model model, HttpSession session){
         if(userService.userLoggedIn(session)) {
