@@ -133,7 +133,7 @@ table a:hover{
     position: relative;
     display: flex;
     min-width: 100px;
-    max-width: 400px;
+    max-width: 450px;
     gap: calc(var(--gutter) / 2 );
 }
 
@@ -152,6 +152,7 @@ table a:hover{
     padding: 2px 23px 2px 35px;
     outline: 0;
     background-color: var(--color-tinyblue);
+    font-size: var(--font-base-body-px);
 }
 
 .duration{
@@ -161,6 +162,7 @@ table a:hover{
     padding-left: 4px;
     outline: 0;
     background-color: var(--color-tinyblue);
+    font-size: 16px;
     /*#f5f5f5*/
 }
 
@@ -169,6 +171,9 @@ table a:hover{
     border-radius: 5px;
     outline: 0;
     background-color: var(--color-tinyblue);
+    font-size: var(--font-base-body-px);
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .header .takki{
@@ -204,4 +209,34 @@ table a:hover{
     border: 1.5px solid black;
     background-color: #009688;
     color: white;
+}
+
+.add{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter);
+}
+
+.title, .timi, .decription {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gutter)/3);
+    width: 50%;
+}
+
+.title input, .timi input, .decription input{
+    padding: 10px 6px;
+    font-size: 20px;
+}
+
+.title label, .timi label, .decription label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add .takki{
+    width: 25%;
+    padding: 10px 6px;
+    font-size: 20px;
+    background-color: var(--color-theme);
 }

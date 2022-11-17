@@ -2,26 +2,43 @@
 <html xmlns:th="https://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Add workout</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/grid.css" />
 </head>
 <body>
-<form action="#" th:action="@{/addWorkout}" th:object="${workout}" method="post">
-
-  <label for="title">Title</label>
-  <input type="text" th:field="*{title}" id="title" placeholder="Title">
-  <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
-
-  <label for="duration">Duration</label>
-  <input type="text" th:field="*{duration}" id="duration" placeholder="Duration">
-  <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></span>
-
-  <label for="description">Description</label>
-  <input type="text" th:field="*{description}" id="description" placeholder="Description">
-  <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-
-  <input type="submit" value="Add Workout">
-
-</form>
-
+  <div class="wrapper">
+    <div class="header">
+      <h2>USER</h2>
+      <div class="val">
+        <form th:action="@{/workouts}" method="post">
+          <input class="icon" type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" />
+        </form>
+        <form th:action="@{/settings}" method="post">
+          <input class="icon" type="image" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png" />
+        </form>
+      </div>
+    </div>
+  <main class="heleting">
+    <form class="add" action="#" th:action="@{/addWorkout}" th:object="${workout}" method="post">
+      <div class="title">
+        <label for="title">Title</label>
+        <input class="search" type="text" th:field="*{title}" id="title" placeholder="Title">
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+      </div>
+      <div class="timi">
+        <label for="duration">Duration</label>
+        <input class="search" type="text" th:field="*{duration}" id="duration" placeholder="Duration">
+        <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></span>
+      </div>
+      <div class="decription">
+        <label for="description">Description</label>
+        <input class="search" type="text" th:field="*{description}" id="description" placeholder="Description">
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+      </div>
+      <input class="takki" type="submit" value="Add Workout">
+    </form>
+  </main>
+  </div>
 </body>
 </html>

@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/grid.css" />
 </head>
 <body>
-<h2 th:text="${workout.title}"></h2>
-<h3 >Duration: </h3>
-<h3 th:text="${workout.duration}"></h3>
-<h3>Description: </h3>
-<h3 th:text="${workout.description}"></h3>
+    <p><a href="/workouts">Back to workouts</a></p>
+    <h3 >Duration: </h3>
+    <h3 th:text="${workout.duration}"></h3>
+    <h3>Description: </h3>
+    <h3 th:text="${workout.description}"></h3>
+    <h2 th:text="${workout.title}"></h2>
 
+    <p><a th:href="@{/addToMyWorkouts/{id}(id=${workout.ID})}">Add to MyWorkouts</a></p>
+    <table>
+        <thead>
+        <tr>
+            <th>Exercises</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>kg</th>
+            <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="exercise_combo : ${ExerciseCombos}">
+            <td th:text="${exercise_combo.exercise_title}"></td>
+            <td th:text="${exercise_combo.sets}"></td>
+            <td th:text="${exercise_combo.reps}"></td>
+            <td th:text="${exercise_combo.kg}"></td>
+            <td><a th:href="@{/deleteExercise/{workout_id}/{id}(id=${exercise_combo.ID},workout_id=${workout.ID})}">Remove</a></td>
+        </tr>
+        </tbody>
+    </table>
 
-<table>
-    <thead>
-    <tr>
-        <th>Exercises</th>
-        <th>Sets</th>
-        <th>Reps</th>
-        <th>kg</th>
-        <th>Remove</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="exercise_combo : ${ExerciseCombos}">
-        <td th:text="${exercise_combo.exercise_title}"></td>
-        <td th:text="${exercise_combo.sets}"></td>
-        <td th:text="${exercise_combo.reps}"></td>
-        <td th:text="${exercise_combo.kg}"></td>
-        <td><a th:href="@{/deleteExercise/{workout_id}/{id}(id=${exercise_combo.ID},workout_id=${workout.ID})}">Remove</a></td>
-    </tr>
-    </tbody>
-</table>
-<p><a th:href="@{/addToMyWorkouts/{id}(id=${workout.ID})}">Add to MyWorkouts</a></p>
-<p><a th:href="@{/workout/{id}/addExercise(id=${workout.ID})}">Add Exercise</a></p>
-<p><a href="/workouts">Back to workouts</a></p>
+    <p><a th:href="@{/workout/{id}/addExercise(id=${workout.ID})}">Add Exercise</a></p>
+
 </body>
 </html>
