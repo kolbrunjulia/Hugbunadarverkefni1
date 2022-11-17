@@ -33,7 +33,7 @@ public class WorkoutServiceImplementation implements WorkoutService {
     }
 
     /**
-     * Basic find by title service.
+     * Basic find one service.
      *
      * @param title the title of the workout to find
      * @return the workout corresponding to the title if it exists
@@ -65,7 +65,7 @@ public class WorkoutServiceImplementation implements WorkoutService {
     }
 
     /**
-     * Basic service to find ID.
+     * Basic find one service.
      *
      * @param ID the id of the workout to find
      * @return the workout containing the ID to be found if it exists
