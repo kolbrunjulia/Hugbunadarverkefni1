@@ -175,6 +175,26 @@ table a:hover{
     padding: 10px 6px;
 }
 
+
+
+.icon {
+    width: 100%;
+    height: 40px;
+}
+
+.jibby{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jibby .takki{
+    padding: 10px 6px;
+    text-decoration: none;
+    color: var(--color-black);
+}
+
 .search:hover, .search:focus {
     border: 1.5px solid var(--color-theme);
     background-color: white;
@@ -184,9 +204,4 @@ table a:hover{
     border: 1.5px solid black;
     background-color: #009688;
     color: white;
-}
-
-.icon {
-    width: 100%;
-    height: 40px;
 }
