@@ -2,15 +2,19 @@
     /* Grunn bilið okkar er 1rem == 16px */
     --spacing: 1rem;
     /* Hámarksbreidd á efni */
-    --max-width: 1400px;
+    --max-width: 1000px;
 
     --color-primary: #f0f0f8;
 
-    --color-header: #fff;
+    --color-header: #fffbbd;
+    --color-header-vol2: #565254;
     --color-text: #000;
     --color-border: #ccc;
     --color-theme: #63c1bf;
     --color-black: #1b1b1b;
+    --color-light-blue: #c5e8e7;
+    --color-tinyblue: #e9f2f2;
+
 
     /* Letur stillingar */
     --font-base-body-px: 16px;
@@ -27,53 +31,68 @@
     --vertical-space: calc(var(--gutter));
 }
 
+@font-face {
+    font-family: 'Domine';
+    font-style: normal;
+    font-display: swap;
+    src: url(./fonts/domine.ttf) format('woff');
+}
+
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-display: swap;
+    src: url(./fonts/nunito.ttf) format('woff');
+}
+
 .wrapper{
     width: 100%;
-
     display: grid;
     grid-template-rows: auto;
     gap: var(--vertical-space) auto;
 }
-.main{
-    /*display: grid;
-    grid-template-columns: repeat(var(--columns), 1fr);
-    grid-template-rows: auto;*/
+
+.heleting{
     display: flex;
     flex-direction: column;
     width: 100%;
-    text-align: center;
     gap: var(--gutter);
+    max-width: var(--max-width);
+    margin: var(--vertical-space) auto;
 }
-.search input{
-    grid-column: 6/span 6;
-}
-
-.main .val{
-    grid-column: 1 / span 2;
+main{
+    align-self: center;
 }
 
-.main .filer{
-    grid-column: 3 / span 3;
+h2{
+    font-family: var(--font-family-heading);
 }
 
-.main .list{
-    grid-column: 6 / span 6;
+.header h2{
+    color: white;
 }
 
-.main .content{
-    margin: auto;
+body{
+    font-family: var(--font-family-base);
+    margin: 0px;
+}
+
+.val{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--spacing);
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gutter);
 }
 
 .header{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--color-header-vol2);
+    padding: 0px 25px;
 }
 
-
+/* Tafla */
 
 table {
     width: 100%;
@@ -85,15 +104,14 @@ table th{
     text-align: left;
     background-color: var(--color-theme);
     color: var(--color-black);
-    font-family: 'Playfair Display';
 
 }
 table tr:nth-child(even){
-    background-color: #e9f2f2;
+    background-color: var(--color-tinyblue);
 }
 
 table tr:hover {
-    background-color: #c5e8e7;
+    background-color: var(--color-light-blue);
 }
 
 table td, table th {
@@ -101,4 +119,74 @@ table td, table th {
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 12px;
+}
+table a{
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+table a:hover{
+    font-weight: bold;
+}
+
+.leita {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+    max-width: 400px;
+    gap: calc(var(--gutter) / 2 );
+}
+
+.search-icon {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 18px;
+}
+
+.search {
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 30px;
+    width: 100%;
+    padding: 2px 23px 2px 35px;
+    outline: 0;
+    background-color: var(--color-tinyblue);
+}
+
+.duration{
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 30px;
+    padding-left: 4px;
+    outline: 0;
+    background-color: var(--color-tinyblue);
+    /*#f5f5f5*/
+}
+
+.takki {
+    border: 1px solid grey;
+    border-radius: 5px;
+    outline: 0;
+    background-color: var(--color-tinyblue);
+}
+
+.header .takki{
+    padding: 10px 6px;
+}
+
+.search:hover, .search:focus {
+    border: 1.5px solid var(--color-theme);
+    background-color: white;
+}
+
+.takki:hover, .takki:focus {
+    border: 1.5px solid black;
+    background-color: #009688;
+    color: white;
+}
+
+.icon {
+    width: 100%;
+    /*height: 40px;*/
 }
