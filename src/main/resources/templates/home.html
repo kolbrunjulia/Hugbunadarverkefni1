@@ -9,66 +9,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Sperran</title>
-    <!--<link rel="stylesheet" href="css/style.css" /> -->
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/grid.css" />
 </head>
 <body>
-    <p th:text="${LoggedInUser.username}"></p>
-
-    <form th:action="@{/workouts}">
-        <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-        &nbsp;
-        <input type="submit" value="Search" />
-        &nbsp;
-        <input type="button" value="Clear All Filters" id="btnClear" onclick="clearSearch()" />
-    </form>
-
-
-    <div class="main">
-
-        <form th:action="@{/myWorkouts}" method="post">
-            <input type="submit" value="My Workouts" />
-        </form>
-
-        <form th:action="@{/settings}" method="post">
-            <input type="submit" value="Settings" />
-        </form>
-
-        <form th:action="@{/workouts}" method="post">
-        <label for="duration">Duration:</label>
-        <select name="duration" id="duration" onchange="this.form.submit()">
-            <option value="0" >All workouts</option>
-            <option value="1" >0-20 min</option>
-            <option value="2">20-40 min</option>
-            <option value="3" >40-60 min</option>
-            <option value="4" >60+ min</option>
-        </select>
-        </form>
-
-        <div th:switch="${workouts}">
-            <h2 th:case="null">No workouts yet!</h2>
-
-            <div th:case="*">
-                <h2>Workouts</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Duration</th>
-                        <th>Open Workout</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="workout : ${workouts}">
-                        <td th:text="${workout.title}" ><a href="@{/workout/{id}(id=${workout.ID})}"> </a></td>
-                        <td th:text="${workout.duration}"></td>
-                        <td><a th:href="@{/workout/{id}(id=${workout.ID})}">Open Workout</a></td>
-                    </tr>
-                    </tbody>
-                </table>
+    <div class="wrapper">
+        <div class="header">
+            <p th:text="${LoggedInUser.username}"></p>
+            <div class="val">
+                <form th:action="@{/myWorkouts}" method="post">
+                    <input type="submit" value="My Workouts" />
+                </form>
+                <form th:action="@{/settings}" method="post">
+                    <input type="submit" value="Settings" />
+                </form>
             </div>
         </div>
 
+        <div class="main">
+            <form th:action="@{/workouts}" class="search">
+                <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+                &nbsp;
+                <input type="submit" value="Search" />
+                &nbsp;
+            </form>
+            <div class="filer">
+                <form th:action="@{/workouts}" method="post">
+                    <label for="duration">Duration:</label>
+                    <select name="duration" id="duration" onchange="this.form.submit()">
+                        <option value="0" >All workouts</option>
+                        <option value="1" >0-20 min</option>
+                        <option value="2">20-40 min</option>
+                        <option value="3" >40-60 min</option>
+                        <option value="4" >60+ min</option>
+                    </select>
+                </form>
+            </div>
+
+            <div th:switch="${workouts}" class="list">
+                <h2 th:case="null">No workouts yet!</h2>
+
+                <div th:case="*">
+                    <h2>Workouts</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Description</th>
+                            <th>Open Workout</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="workout : ${workouts}">
+                            <td th:text="${workout.title}" ><a href="@{/workout/{id}(id=${workout.ID})}"> </a></td>
+                            <td th:text="${workout.duration}"></td>
+                            <td th:text="${workout.description}"></td>
+                            <td><a th:href="@{/workout/{id}(id=${workout.ID})}">Open Workout</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
