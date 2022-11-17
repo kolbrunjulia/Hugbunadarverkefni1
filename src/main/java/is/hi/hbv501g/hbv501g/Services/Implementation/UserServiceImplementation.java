@@ -68,7 +68,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     /**
-     * Basic find by username service.
+     * Basic find one service.
      *
      * @param username the username of the user to be found
      * @return the user corresponding to the specific username if it exists
@@ -79,7 +79,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     /**
-     * Basic Boolean service that check if the user is logged in
+     * Basic Boolean service that checks if the user is logged in
      *
      * @param session HttpSession
      * @return true if user is logged in,  else false
@@ -98,7 +98,7 @@ public class UserServiceImplementation implements UserService {
      *
      * @param user current user
      * @return doesExist which us the current user if the user exists and
-     * the password is correct. Otherwise returns null.
+     * the password is correct. Otherwise, returns null.
      */
     @Override
     public User login(User user) {
@@ -112,7 +112,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     /**
-     * Basic find by ID service.
+     * Basic find one service.
      *
      * @param id the ID of the user to be found
      * @return the user corresponding to the ID if it exists
@@ -133,10 +133,6 @@ public class UserServiceImplementation implements UserService {
         user.getMyWorkouts().add(workout);
 
     }
-
-
-
-
 }
 
 
