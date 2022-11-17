@@ -10,22 +10,24 @@
   <title>Workout System</title>
 </head>
 <body>
+  <h2 th:text="${LoggedInUser.username}"></h2>
+  <form th:action="@{/workouts}" method="post">
+    <input type="submit" value="Home" />
+  </form>
 
-<form th:action="@{/myWorkouts}">
-  Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-  &nbsp;
-  <input type="submit" value="Search" />
-  &nbsp;
-  <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-</form>
+  <form th:action="@{/settings}" method="post">
+    <input type="submit" value="Settings" />
+  </form>
 
-<form th:action="@{/workouts}" method="post">
-  <input type="submit" value="Home" />
-</form>
+  <form th:action="@{/myWorkouts}">
+    <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+    &nbsp;
+    <input type="submit" value="Search" />
+    &nbsp;
+    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+  </form>
 
-<form th:action="@{/settings}" method="post">
-  <input type="submit" value="Settings" />
-</form>
+
 
 <div th:switch="${workoutsToDisplay}">
   <h2 th:case="null">You haven't created any workouts yet! :(</h2>
