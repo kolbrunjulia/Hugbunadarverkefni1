@@ -12,7 +12,7 @@ import java.util.List;
  *****************************************************************************/
 
 /**
- * The main repository for handling exercise data.
+ * The main repository for handling exercises.
  */
 
 public interface ExerciseRepository extends JpaRepository<Exercise, Long > {

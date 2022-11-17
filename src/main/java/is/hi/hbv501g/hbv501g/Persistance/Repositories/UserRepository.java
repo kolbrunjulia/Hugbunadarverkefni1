@@ -13,7 +13,7 @@ import java.util.List;
  *****************************************************************************/
 
 /**
- * The main repository for handling user data.
+ * The main repository for handling users.
  */
 
 public interface UserRepository extends JpaRepository<User, Long > {

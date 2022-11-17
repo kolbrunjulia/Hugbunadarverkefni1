@@ -14,7 +14,7 @@ import java.util.List;
  *****************************************************************************/
 
 /**
- * The main repository for handling exerciseCombo data.
+ * The main repository for handling exerciseCombos.
  */
 
 public interface ExerciseComboRepository extends JpaRepository<ExerciseCombo, Long > {

@@ -15,7 +15,7 @@ import java.util.List;
  *****************************************************************************/
 
 /**
- * The main repository for handling workout data.
+ * The main repository for handling workouts.
  */
 
 @Repository
