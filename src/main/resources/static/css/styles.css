@@ -9,6 +9,8 @@
     --color-header: #fff;
     --color-text: #000;
     --color-border: #ccc;
+    --color-theme: #63c1bf;
+    --color-black: #1b1b1b;
 
     /* Letur stillingar */
     --font-base-body-px: 16px;
@@ -33,10 +35,17 @@
     gap: var(--vertical-space) auto;
 }
 .main{
-    display: grid;
+    /*display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
-    grid-template-rows: auto;
+    grid-template-rows: auto;*/
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
     gap: var(--gutter);
+}
+.search input{
+    grid-column: 6/span 6;
 }
 
 .main .val{
@@ -64,6 +73,32 @@
     flex-direction: row;
 }
 
-.header form{
-    flex: 1;
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+table th{
+    text-align: left;
+    background-color: var(--color-theme);
+    color: var(--color-black);
+    font-family: 'Playfair Display';
+
+}
+table tr:nth-child(even){
+    background-color: #e9f2f2;
+}
+
+table tr:hover {
+    background-color: #c5e8e7;
+}
+
+table td, table th {
+    border: 1px solid var(--color-black);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
 }
