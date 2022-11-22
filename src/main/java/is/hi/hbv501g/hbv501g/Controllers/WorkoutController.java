@@ -87,8 +87,10 @@ public class WorkoutController {
      * @return addWorkout template if user is logged in, otherwise login page
      */
     @RequestMapping(value = "/addWorkout",method = RequestMethod.GET)
-    public String addWorkoutForm(Workout workout, HttpSession session){
+    public String addWorkoutForm(Workout workout, HttpSession session, Model model){
         if(userService.userLoggedIn(session)) {
+            User user = (User) session.getAttribute("LoggedInUser");
+            model.addAttribute("LoggedInUser", user);
             return "addWorkout";
         }
         return "redirect:/";
@@ -163,7 +165,8 @@ public class WorkoutController {
             //List<ExerciseCombo> exerciseCombosToOpen = exerciseComboService.findAll();
             model.addAttribute("workout", workoutToOpen);
             model.addAttribute("ExerciseCombos", exerciseCombos);
-
+            User user = (User) session.getAttribute("LoggedInUser");
+            model.addAttribute("LoggedInUser", user);
             return "workout";
         }
         return "redirect:/";

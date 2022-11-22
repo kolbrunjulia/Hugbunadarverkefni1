@@ -9,7 +9,7 @@
 <body>
   <div class="wrapper">
     <div class="header">
-      <h2>USER</h2>
+      <h2 th:text="${LoggedInUser.username}"></h2>
       <div class="val">
         <form th:action="@{/workouts}" method="post">
           <input class="icon" type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" />
