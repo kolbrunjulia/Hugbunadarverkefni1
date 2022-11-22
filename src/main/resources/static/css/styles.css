@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: var(--gutter);
+    gap: calc(var(--gutter)/2);
     max-width: var(--max-width);
     margin: var(--vertical-space) auto;
 }
@@ -145,12 +145,15 @@ table a:hover{
 .search {
     border: 1px solid grey;
     border-radius: 5px;
-    height: 30px;
-    width: 100%;
     padding: 2px 23px 2px 35px;
     outline: 0;
     background-color: var(--color-tinyblue);
     font-size: var(--font-base-body-px);
+}
+
+.home .search{
+    height: 30px;
+    width: 100%;
 }
 
 .duration{
@@ -232,6 +235,15 @@ table a:hover{
     font-weight: bold;
 }
 
+.title select{
+    padding: 10px 6px;
+    font-size: 20px;
+}
+
+.title option{
+    font-size: 20px;
+}
+
 .add .takki{
     width: 25%;
     padding: 10px 6px;
@@ -252,4 +264,45 @@ table a:hover{
 
 .user p:nth-child(even){
     font-weight: bold;
+}
+
+.settings .heleting{
+    gap: 0px;
+}
+
+.settings .takki{
+    font-size: 60px;
+    padding: 30px 60px;
+}
+
+.dot p{
+    padding-top: 8px;
+}
+
+.exersice .takki {
+    padding: 10px 6px;
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+.settingstakki{
+    align-self: center;
+}
+
+.settings .takki:hover, .settings .takki:focus {
+    border: 1.5px solid black;
+    background-color: red;
+    color: white;
+}
+
+.duration1{
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--gutter)/3);
+}
+
+.description{
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--gutter)/3);
 }

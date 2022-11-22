@@ -5,43 +5,60 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="../css/grid.css" />
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <link rel="stylesheet" href="../../css/grid.css" />
 </head>
 <!--Setja inn div sem tékkar á Exercise type? (t.d. ef að exercise er bw ekki sýna kg,
 og líka ef exercise er cardio sýna tíma og lengd í staðinn fyrir sets reps kg...
 ) </!-->
 <body>
-<form action="#" th:action="@{/workout/{id}/addExercise(id=${workout.ID})}" th:object="${exerciseCombo}" method="post">
-  <label for="exercise_title">Title</label>
-  <select name="exercise_title" id="exercise_title">
-    <option value="Bicep Curls" selected>Bicep Curls</option>
-    <option value="Push ups">Push ups</option>
-    <option value="Crunches" >Crunches</option>
-    <option value="Bench press" >Bench press</option>
-    <option value="Chin ups" >Chin ups</option>
-    <option value="Pull ups" >Pull ups</option>
-  </select>
+  <div class="wrapper">
+    <div class="header">
+      <h2>USER</h2>
+      <div class="val">
+        <form th:action="@{/workouts}" method="post">
+          <input class="icon" type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" />
+        </form>
+        <form th:action="@{/settings}" method="post">
+          <input class="icon" type="image" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png" />
+        </form>
+      </div>
+    </div>
+    <main class="heleting">
+      <form class="add" action="#" th:action="@{/workout/{id}/addExercise(id=${workout.ID})}" th:object="${exerciseCombo}" method="post">
+        <div class="title">
+          <label for="exercise_title">Title</label>
+          <select class="search" name="exercise_title" id="exercise_title">
+            <option value="Bicep Curls" selected>Bicep Curls</option>
+            <option value="Push ups">Push ups</option>
+            <option value="Crunches" >Crunches</option>
+            <option value="Bench press" >Bench press</option>
+            <option value="Chin ups" >Chin ups</option>
+            <option value="Pull ups" >Pull ups</option>
+          </select>
+        </div>
 
-  <span th:if="${#fields.hasErrors('exercise_title')}" th:errors="*{exercise_title}"></span>
+        <span th:if="${#fields.hasErrors('exercise_title')}" th:errors="*{exercise_title}"></span>
+        <div class="timi">
+          <label for="sets">Sets</label>
+          <input class="search" type="text" th:field="*{sets}" id="sets" placeholder="Sets">
+          <span th:if="${#fields.hasErrors('sets')}" th:errors="*{sets}"></span>
+        </div>
+        <div class="timi">
+          <label for="reps">Reps</label>
+          <input class="search" type="text" th:field="*{reps}" id="reps" placeholder="Reps">
+          <span th:if="${#fields.hasErrors('reps')}" th:errors="*{reps}"></span>
+        </div>
+        <div class="timi">
+          <label for="kg">Kg</label>
+          <input class="search" type="text" th:field="*{kg}" id="kg" placeholder="RPE">
+          <span th:if="${#fields.hasErrors('kg')}" th:errors="*{kg}"></span>
+        </div>
 
-  <label for="sets">Sets</label>
-  <input type="text" th:field="*{sets}" id="sets" placeholder="Sets">
-  <span th:if="${#fields.hasErrors('sets')}" th:errors="*{sets}"></span>
+        <input class="takki" type="submit" value="Add exercise">
 
-  <label for="reps">Reps</label>
-  <input type="text" th:field="*{reps}" id="reps" placeholder="Reps">
-  <span th:if="${#fields.hasErrors('reps')}" th:errors="*{reps}"></span>
-
-  <label for="kg">RPE</label>
-  <input type="text" th:field="*{kg}" id="kg" placeholder="RPE">
-  <span th:if="${#fields.hasErrors('kg')}" th:errors="*{kg}"></span>
-
-  <input type="submit" value="Add exercise">
-
-</form>
-
-
-
+      </form>
+    </main>
+  </div>
 </body>
 </html>

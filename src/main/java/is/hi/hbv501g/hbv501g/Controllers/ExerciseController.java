@@ -54,6 +54,9 @@ public class ExerciseController {
     public String deleteExercise(ExerciseCombo exerciseCombo, @PathVariable("id") long id, @PathVariable("workout_id") long workout_id, Model model, HttpSession session){
         if(userService.userLoggedIn(session)) {
             ExerciseCombo exerciseComboToDelete = exerciseComboService.findByID(id);
+            if(exerciseComboToDelete.getWorkout().isMadeByAdmin()){
+                return "redirect:/error_page1";
+            }
             exerciseComboService.delete(exerciseComboToDelete);
             return "redirect:/workout/{workout_id}";
         }
@@ -73,6 +76,9 @@ public class ExerciseController {
     public String addExerciseComboForm(ExerciseCombo exerciseCombo,@PathVariable("id") long id,Model model, HttpSession session){
         if(userService.userLoggedIn(session)) {
             Workout workoutToOpen = workoutService.findByID(id);
+            if(workoutToOpen.isMadeByAdmin()){
+                return "redirect:/error_page1";
+            }
             model.addAttribute("workout", workoutToOpen);
             return "addExerciseCombo";
         }
