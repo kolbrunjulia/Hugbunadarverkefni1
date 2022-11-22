@@ -1,4 +1,37 @@
 
+:root {
+    /* Grunn bilið okkar er 1rem == 16px */
+    --spacing: 1rem;
+    /* Hámarksbreidd á efni */
+    --max-width: 1000px;
+
+    --color-primary: #f0f0f8;
+
+    --color-header: #fffbbd;
+    --color-header-vol2: #565254;
+    --color-text: #000;
+    --color-border: #ccc;
+    --color-theme: #63c1bf;
+    --color-black: #1b1b1b;
+    --color-light-blue: #c5e8e7;
+    --color-tinyblue: #e9f2f2;
+
+
+    /* Letur stillingar */
+    --font-base-body-px: 16px;
+    --font-base-size: 1rem;
+    --font-family-base: 'Nunito', Helvetica, Arial, sans-serif;
+    --font-family-heading: 'Domine', Georgia, serif;
+
+    /* Grid stillingar */
+    --columns: 12;
+    --gutter: 30px;
+    --offset: 20px;
+
+    /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+    --vertical-space: calc(var(--gutter));
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -15,9 +48,9 @@ body::before {
     left: 0;
     width: 25%;
     height: 100%;
-    background-color: #03a9f4;
-    opacity: 0.8;
-    background-image: url("sperran.png");
+    background-color: var(--color-theme);
+   /* opacity: 0.8;
+    background-image: url("sperran.png");*/
 }
 
 .form {
@@ -27,14 +60,15 @@ body::before {
     transform: translate(-50%, -50%);
     width: 350px;
     min-height: 400px;
-    background-color: #fff;
+    background-color: var(--color-header-vol2);
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
     padding: 50px;
     box-sizing: border-box;
 }
 
 .form h2 {
-    color: #777;
+    font-family: var(--font-family-heading);
+    color: white;
     margin: 0 0 40px;
     padding: 0;
 }
@@ -50,6 +84,7 @@ body::before {
     border: none;
     border-bottom: 2px solid #777;
     outline: none;
+    font-family: var(--font-family-base);
     padding: 10px;
     padding-left: 30px;
     box-sizing: border-box;
@@ -59,7 +94,7 @@ body::before {
 
 .form .input-box input:focus,
 .form .input-box input:valid {
-    border-bottom-color: #03a9f4;
+    border-bottom-color: var(--color-theme);
 }
 
 .form .input-box .fa {
@@ -73,7 +108,7 @@ body::before {
 .form .input-box input[type="submit"] {
     border: none;
     cursor: pointer;
-    background-color: #03a9f4;
+    background-color: var(--color-theme);
     color: #fff;
     font-weight: bold;
     transition: 0.5s;
@@ -85,14 +120,19 @@ body::before {
 
 .form a {
     text-decoration: none;
-    color: #777;
+    color: #fff;
     margin-top: 20px;
     font-weight: bold;
+    font-family: var(--font-family-base);
     display: inline-block;
     transition: 0.5s;
 }
 
 .form a:hover {
     color: #ff4987;
+}
+
+.input-box input[type="submit"]{
+    padding-left: 0px;
 }
 
