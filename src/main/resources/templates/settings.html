@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Settings</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/grid.css" />
 </head>
 <body>
-<h1>
-    Settings
-</h1>
+    <div class="wrapper">
+        <div class="settings">
+            <div class="header">
+                <h2 th:text="${LoggedInUser.username}"></h2>
+                <form th:action="@{/workouts}" method="post">
+                    <input class="icon" type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" />
+                </form>
+            </div>
+            <main class="heleting">
+                <h1>Settings</h1>
+                <div class="user">
+                    <p>User: </p>
+                    <p th:text="${LoggedInUser.username}"></p>
+                </div>
 
-<p th:text="${LoggedInUser.username}"></p>
+                <!--
+                <form th:action="@{/darkMode}" method="post">
+                    <input type="submit" value="Dark Mode" />
+                </form>
 
-<form th:action="@{/workouts}" method="post">
-    <input type="submit" value="Home" />
-</form>
-
-<form th:action="@{/darkMode}" method="post">
-    <input type="submit" value="Dark Mode" />
-</form>
-
-<label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-</label>
-
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Logout" />
-</form>
-
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                -->
+                <form th:action="@{/logout}" method="post">
+                    <input class="takki" type="submit" value="Logout" />
+                </form>
+            </main>
+        </div>
+    </div>
 </body>
 </html>
