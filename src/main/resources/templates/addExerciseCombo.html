@@ -5,6 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/grid.css" />
 </head>
 <!--Setja inn div sem tékkar á Exercise type? (t.d. ef að exercise er bw ekki sýna kg,
 og líka ef exercise er cardio sýna tíma og lengd í staðinn fyrir sets reps kg...
@@ -31,8 +33,8 @@ og líka ef exercise er cardio sýna tíma og lengd í staðinn fyrir sets reps 
   <input type="text" th:field="*{reps}" id="reps" placeholder="Reps">
   <span th:if="${#fields.hasErrors('reps')}" th:errors="*{reps}"></span>
 
-  <label for="kg">Kg</label>
-  <input type="text" th:field="*{kg}" id="kg" placeholder="Kg">
+  <label for="kg">RPE</label>
+  <input type="text" th:field="*{kg}" id="kg" placeholder="RPE">
   <span th:if="${#fields.hasErrors('kg')}" th:errors="*{kg}"></span>
 
   <input type="submit" value="Add exercise">

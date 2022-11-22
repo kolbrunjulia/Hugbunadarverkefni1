@@ -44,7 +44,7 @@ public class ExerciseCombo {
     }
     public String getExercise_title() {
         if (exercise == null){
-            return "asdf";
+            return "No Exercise Available";
         }
         else return exercise.getTitle();
     }

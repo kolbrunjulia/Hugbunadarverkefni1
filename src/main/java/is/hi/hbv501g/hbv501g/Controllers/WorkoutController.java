@@ -58,6 +58,28 @@ public class WorkoutController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/addWorkoutAdmin",method = RequestMethod.GET)
+    public String addWorkoutFormAdmin(Workout workout, HttpSession session){
+        if(userService.userLoggedIn(session)) {
+            return "addWorkout";
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/addWorkoutAdmin",method = RequestMethod.POST)
+    public String addWorkoutAdmin(Workout workout, BindingResult result,Model model, HttpSession session){
+        if(userService.userLoggedIn(session)) {
+            if (result.hasErrors()) {
+                return "addWorkout";
+            }
+            workoutService.save(workout);
+            return "redirect:/workouts";
+        }
+        return "redirect:/";
+    }
+
+
+
     /**
      * GET on /addWorkout
      *
@@ -200,6 +222,7 @@ public class WorkoutController {
             User userToAddWorkoutTo = (User) session.getAttribute("LoggedInUser");
             List <Workout> workoutsToDisplay = userToAddWorkoutTo.getMyWorkouts();
             model.addAttribute( "workoutsToDisplay", workoutsToDisplay);
+            model.addAttribute("LoggedInUser", userToAddWorkoutTo);
 
             return "myWorkouts";
         }
