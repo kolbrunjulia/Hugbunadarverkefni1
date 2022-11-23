@@ -1,5 +1,6 @@
 package is.hi.hbv501g.hbv501g.Controllers;
 import is.hi.hbv501g.hbv501g.Persistance.Entities.ExerciseCombo;
+import is.hi.hbv501g.hbv501g.Persistance.Entities.User;
 import is.hi.hbv501g.hbv501g.Persistance.Entities.Workout;
 import is.hi.hbv501g.hbv501g.Services.ExerciseComboService;
 import is.hi.hbv501g.hbv501g.Services.ExerciseService;
@@ -80,6 +81,8 @@ public class ExerciseController {
                 return "redirect:/ekkiAdmin";
             }
             model.addAttribute("workout", workoutToOpen);
+            User user = (User) session.getAttribute("LoggedInUser");
+            model.addAttribute("LoggedInUser", user);
             return "addExerciseCombo";
         }
         return "redirect:/";

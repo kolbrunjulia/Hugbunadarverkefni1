@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <link rel="icon" href="../../css/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="../../css/grid.css" />
 </head>
@@ -14,7 +15,7 @@ og líka ef exercise er cardio sýna tíma og lengd í staðinn fyrir sets reps 
 <body>
   <div class="wrapper">
     <div class="header">
-      <h2>USER</h2>
+      <h2 th:text="${LoggedInUser.username}"></h2>
       <div class="val">
         <form th:action="@{/workouts}" method="post">
           <input class="icon" type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" />
@@ -51,7 +52,7 @@ og líka ef exercise er cardio sýna tíma og lengd í staðinn fyrir sets reps 
         </div>
         <div class="timi">
           <label for="kg">Kg</label>
-          <input class="search" type="text" th:field="*{kg}" id="kg" placeholder="RPE">
+          <input class="search" type="text" th:field="*{kg}" id="kg" placeholder="Kg">
           <span th:if="${#fields.hasErrors('kg')}" th:errors="*{kg}"></span>
         </div>
 
