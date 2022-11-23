@@ -77,12 +77,20 @@ public class ExerciseController {
         if(userService.userLoggedIn(session)) {
             Workout workoutToOpen = workoutService.findByID(id);
             if(workoutToOpen.isMadeByAdmin()){
-                return "redirect:/error_page1";
+                return "redirect:/ekkiAdmin";
             }
             model.addAttribute("workout", workoutToOpen);
             return "addExerciseCombo";
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/ekkiAdmin")
+    public String workoutTil(HttpSession session){
+        if(userService.userLoggedIn(session)) {
+            return "ekkiAdmin";
+        }
+        return "redirect:/error_page1";
     }
 
     /**

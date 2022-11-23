@@ -64,7 +64,7 @@ main{
     align-self: center;
 }
 
-h2{
+h2, h3{
     font-family: var(--font-family-heading);
 }
 
