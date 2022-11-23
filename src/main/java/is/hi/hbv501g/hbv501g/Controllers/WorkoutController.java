@@ -240,6 +240,7 @@ public class WorkoutController {
             User userToAddWorkoutTo = (User) session.getAttribute("LoggedInUser");
             List <Workout> workoutsToDisplay = userToAddWorkoutTo.getMyWorkouts();
             model.addAttribute( "workoutsToDisplay", workoutsToDisplay);
+            model.addAttribute("LoggedInUser", userToAddWorkoutTo);
             return "myWorkouts";
         }
         return "redirect:/";
