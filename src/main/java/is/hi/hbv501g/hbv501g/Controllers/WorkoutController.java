@@ -275,6 +275,7 @@ public class WorkoutController {
                 workoutToAddUserTo.getUser().add(userToAddWorkoutTo);
                 workoutToAddUserTo.setUser(workoutToAddUserTo.getUser());
                 workoutService.save(workoutToAddUserTo);
+
                 userService.save(userToAddWorkoutTo);
                 return "redirect:/myWorkouts";
             }
