@@ -24,7 +24,6 @@ public class Workout {
     private String description;
     @OneToMany(mappedBy = "workout",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExerciseCombo> exerciseCombo = new ArrayList<>();
-    // Setja inn ManyToMany
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<User> user = new ArrayList<>();
